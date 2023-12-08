@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="img/pokeball.ico">
+    <script src="js/script.js"></script>
+    <title>POKEDEX</title>
+</head>
+<body>
+    <div class="pokedex_notmain">
+        <h1 class="pokedex_notmain">POKEDEX</h1>
+    </div>
+    <div id="pokedex">
+        <img src="img/pokedex_yellow.png" id="pokedex_img" class="pokedex_img">
+        <img src="" id="pokemon_sprite">
+        <button class="pokedex_button" onclick="get()"></button>
+        <button class="pokedex_capturebutton" onclick="capturar()"><img src="img/pokeball.png" class="pokeball"></button>
+        <p class="pokemon_name">POKEMON NAME</p>
+        <p class="pokemon_id"></p>
+        <p class="capturar">CAPTURAR</p>
+        <input id="pokemon_input" placeholder="ID Pokemon" type="number">
+    </div>
+
+    <div id="lista_time">
+        <h1 class="listatime_notmain">LISTA DO TIME</h1>
+        <div class="listatime_main">
+            <p><img src="img/empty.png" id="1"><br><button onclick="soltar()">SOLTAR</button><br>1</p>
+            <br>
+            <p><img src="img/empty.png" id="2"><br><button onclick="soltar()">SOLTAR</button><br>2</p>
+            <br>
+            <p><img src="img/empty.png" id="3"><br><button onclick="soltar()">SOLTAR</button><br>3</p>
+            <br>
+            <p><img src="img/empty.png" id="4"><br><button onclick="soltar()">SOLTAR</button><br>4</p>
+            <br>
+            <p><img src="img/empty.png" id="5"><br><button onclick="soltar()">SOLTAR</button><br>5</p>
+            <br>
+            <p><img src="img/empty.png" id="6"><br><button onclick="soltar()">SOLTAR</button><br>6</p>
+        </div>
+        <ul id="ulid">
+    
+         </ul>
+    </div>
+</body>
+</html>

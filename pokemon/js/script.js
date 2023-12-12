@@ -1,6 +1,6 @@
 const URL = 'https://pokeapi.co/api/v2/pokemon/'
-let atual = 1
-let limite = 6 
+var atual = 1
+var limite = 6 
 
 function get(){
 	const inputid = document.getElementById('pokemon_input').value
@@ -43,18 +43,75 @@ const fetchPokemon = async (pokemon) => {
 		document.getElementById('pokemon_sprite').src = ''
 	}
 }
-
 //sistema de captura
-function capturar() {
-	if(atual !== limite){
-		const pokemonID = document.getElementById('pokemon_input')
-		fetchPokemon(pokemonID). then(spriteURL => {
-			if(spriteURL){
-				document.getElementById(`${atual}`).src = data.sprites.front_default
-				atual ++
-				console.log(atual)
-			}
-		})
-	}	
+async function capturar() {
+	const inputid = document.getElementById('pokemon_input').value;
+	
+	if (Number(inputid) >= 1 && Number(inputid) <= 898) {
+	  const pokemonData = await fetchPokemon(inputid);
+	  const nameElement = document.querySelector('#p' + `${atual}`);
+	  
+	  nameElement.textContent = "teste";
+	  const imgElement = document.getElementById('i' + atual);
+	  imgElement.src = pokemonData.sprites.front_default;
+	  atual++;
+	}
+  }
+
+function soltar(i) {
+	if (document.getElementById(`i${i}`)) {
+	  const imgelement = document.getElementById(`i${i}`);
+	  imgelement.src = '';
+	  const element = document.getElementById(`p${u}`);
+	  element.textContent = '';
+	}
 }
 
+async function exibir() {
+	const inputid = document.getElementById('pokemon_input').value;
+	const pokemonData = await fetchPokemon(inputid);
+  
+	const habilidades = pokemonData.abilities.map(ability => ability.ability.name);
+	
+	let ulElement = document.getElementById("ul");
+  
+	habilidades.forEach(habilidade => {
+	  let liElement = document.createElement("li");
+	  liElement.textContent = habilidade;
+	  ulElement.appendChild(liElement);
+	});
+  }
+
+function showPokemons() {
+	const URL = 'https://pokeapi.co/api/v2/pokemon/?limit=251';
+	fetch(URL)
+	  .then((response) => {
+		if(response.ok){
+		  return response.json()
+		}else{
+		  console.log('erro ao obter a lista de Pokémons')
+		}
+	  })
+	  .then((data) => {
+		const pokemonList = data.results
+		const pokemonListContainer = document.getElementById('PokemonList')
+  
+		pokemonList.forEach((pokemon, index) => {
+		  const liPokemon = document.createElement('li')
+		  const liPokemonImg = document.createElement('img')
+  
+		  fetch(pokemon.url)
+			.then((response) => response.json())
+			.then((pokemonData) => {
+			  liPokemonImg.src = pokemonData.sprites.other['official-artwork'].front_default
+  
+			  const capitalizedPokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)
+			  liPokemon.innerHTML = capitalizedPokemonName
+			  liPokemon.classList.add('pokename')
+			  liPokemon.appendChild(liPokemonImg)
+  
+			  pokemonListContainer.appendChild(liPokemon)
+			})
+		})
+	  })
+  }

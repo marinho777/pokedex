@@ -159,3 +159,23 @@ h1{
     font-size: 180%;
     background-color: rgba(240, 248, 255, 0.6);
 }
+
+.detalhes{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    position: absolute;
+    top: 6%;
+    left: 60%;
+    width: 23%;
+    height: 6%;
+}
+.detalhes button{
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    color: white;
+}
+
+#PokemonListContainer{
+    display: flex;
+    justify-content: center;
+}
